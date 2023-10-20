@@ -58,7 +58,7 @@ export const getSidebar = query({
     const identity = await ctx.auth.getUserIdentity();
 
     if (!identity) {
-      return new Error("unauthorized");
+      throw new Error("unauthorized");
     }
 
     const userId = identity.subject;
@@ -71,6 +71,7 @@ export const getSidebar = query({
       .filter((q) => q.eq(q.field("isArchived"), false))
       .order("desc")
       .collect();
+
     return documents;
   },
 });
@@ -216,14 +217,14 @@ export const getSearch = query({
 
     const userId = identity.subject;
 
-    const documents = await ctx.db
+    const document = await ctx.db
       .query("documents")
       .withIndex("by_user", (q) => q.eq("userId", userId))
       .filter((q) => q.eq(q.field("isArchived"), false))
       .order("desc")
       .collect();
 
-    return documents;
+    return document;
   },
 });
 
@@ -318,6 +319,7 @@ export const removeIcon = mutation({
     const document = await ctx.db.patch(args.id, {
       icon: undefined,
     });
+    return document;
   },
 });
 

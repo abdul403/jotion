@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 
 import { Item } from "./item";
 
-
 interface DocumentListProps {
   parentDocumentId?: Id<"documents">;
   level?: number;
@@ -20,7 +19,6 @@ interface DocumentListProps {
 
 export const DocumentList = ({
   parentDocumentId,
-  data,
   level = 0,
 }: DocumentListProps) => {
   const params = useParams();
