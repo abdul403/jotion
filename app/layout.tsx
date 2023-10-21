@@ -37,8 +37,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <EdgeStoreProvider>
           <ConvexClientProvider>
+        <EdgeStoreProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -50,8 +50,8 @@ export default function RootLayout({
               <ModalProvider />
               {children}
             </ThemeProvider>
-          </ConvexClientProvider>
         </EdgeStoreProvider>
+          </ConvexClientProvider>
       </body>
     </html>
   );

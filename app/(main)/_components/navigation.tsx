@@ -8,11 +8,12 @@ import {
   MenuIcon,
   Plus,
   PlusCircle,
+  Router,
   Search,
   Settings,
   Trash,
 } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ElementRef, useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useMediaQuery } from "usehooks-ts";
@@ -38,6 +39,7 @@ export const Navigation = () => {
   const params = useParams();
 
   const create = useMutation(api.documents.create);
+  const router = useRouter();
 
   const isRezisingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -94,7 +96,7 @@ export const Navigation = () => {
       sidebarRef.current.style.width = isMobile ? "100%" : "240px";
       navbarRef.current.style.setProperty(
         "width",
-        isMobile ? "0" : "calc(100% - 2240px)"
+        isMobile ? "0" : "calc(100% - 240px)"
       );
       navbarRef.current.style.setProperty("left", isMobile ? "100%" : "240px");
       setTimeout(() => setIsResetting(false), 300);
@@ -122,7 +124,9 @@ export const Navigation = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" }).then((documentId) =>
+      router.push(`/documents/${documentId}`)
+    );
 
     toast.promise(promise, {
       loading: "Creating a new note...",

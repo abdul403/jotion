@@ -33,6 +33,7 @@ export const Cover = ({ url, preview }: CoverProps) => {
       id: params.documentId as Id<"documents">,
     });
   };
+
   return (
     <div
       className={cn(
@@ -43,7 +44,7 @@ export const Cover = ({ url, preview }: CoverProps) => {
     >
       {!!url && <Image src={url} fill alt="cover" className="object-cover" />}
       {url && !preview && (
-        <div className="opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex items-center gap-x-2">
+        <div className="sm:opacity-100 opacity-0 group-hover:opacity-100 absolute bottom-5 right-5 flex  items-center gap-x-2">
           <Button
             onClick={() => coverImage.onReplace(url)}
             className="text-muted-foreground text-xs"
