@@ -11,19 +11,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Jotion",
-  description:
-    "App which can make your work faster, easily to sahare over a world",
+  description: "The connected workspace where better, faster work happens.",
   icons: {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-        href: "/logo.svg",
+        url: "/logo-dark.svg",
+        href: "/logo-dark.svg",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
+        url: "/logo.svg",
+        href: "/logo.svg",
       },
     ],
   },
@@ -37,8 +36,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-          <ConvexClientProvider>
-        <EdgeStoreProvider>
+        <ConvexClientProvider>
+          <EdgeStoreProvider>
             <ThemeProvider
               attribute="class"
               defaultTheme="system"
@@ -50,8 +49,8 @@ export default function RootLayout({
               <ModalProvider />
               {children}
             </ThemeProvider>
-        </EdgeStoreProvider>
-          </ConvexClientProvider>
+          </EdgeStoreProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
